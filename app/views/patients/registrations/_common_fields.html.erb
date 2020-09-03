@@ -1,0 +1,59 @@
+<%= render "patients/shared/error_messages", resource: resource %>
+
+<div class="field">
+  <%= f.label :email %><br />
+  <%= f.email_field :email, autofocus: true, autocomplete: "email", disabled: dissabled_fields %>
+</div>
+
+<div class="field">
+  <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+  <%= f.password_field :password, autocomplete: "new-password" %>
+  <% if @minimum_password_length %>
+    <br />
+    <em><%= @minimum_password_length %> characters minimum</em>
+  <% end %>
+</div>
+
+<div class="field">
+  <%= f.label :password_confirmation %><br />
+  <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+</div>
+
+<div class="field">
+  <%= f.label :first_name %><br />
+  <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name" %>
+</div>
+
+<div class="field">
+  <%= f.label :last_name %><br />
+  <%= f.text_field :last_name, autofocus: true, autocomplete: "last_name" %>
+</div>
+
+<div class="field">
+  <%= f.label :phone_number %><br />
+  <%= f.text_field :phone_number, autofocus: true, autocomplete: "phone_number" %>
+</div>
+
+<div class="field">
+  <%= f.label :jmbg %><br />
+  <%= f.text_field :jmbg, autofocus: true, autocomplete: "jmbg", disabled: dissabled_fields %>
+</div>
+
+<h3>Address:</h3>
+
+<%= f.fields_for :address do |a| %>
+  <div class="field">
+    <%= a.label :street %><br />
+    <%= a.text_field :street, autofocus: true, autocomplete: "street" %>
+  </div>
+
+  <div class="field">
+    <%= a.label :city %><br />
+    <%= a.text_field :city, autofocus: true, autocomplete: "city" %>
+  </div>
+
+  <div class="field">
+    <%= a.label :country %><br />
+    <%= a.text_field :country, autofocus: true, autocomplete: "country" %>
+  </div>
+<% end %>

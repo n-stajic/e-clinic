@@ -4,14 +4,15 @@ class Patient < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  validates :email,          presence: true, immutable: true, uniqueness: true
-  validates :jmbg,           presence: true, immutable: true, uniqueness: true
-  validates :first_name,     presence: true
-  validates :last_name,      presence: true
-  validates :street_address, presence: true
-  validates :city,           presence: true
-  validates :country,        presence: true
-  validates :phone_number,   presence: true
+  belongs_to :address
+
+  validates :email,        presence: true, immutable: true, uniqueness: true
+  validates :jmbg,         presence: true, immutable: true, uniqueness: true
+  validates :first_name,   presence: true
+  validates :last_name,    presence: true
+  validates :phone_number, presence: true
+
+  accepts_nested_attributes_for :address
 
   def active_for_authentication? 
     super && approved?

@@ -10,10 +10,41 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_03_103805) do
+ActiveRecord::Schema.define(version: 2020_09_03_111912) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "addresses", force: :cascade do |t|
+    t.string "street"
+    t.string "city"
+    t.string "country"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "appointments", force: :cascade do |t|
+    t.datetime "date"
+    t.bigint "clinic_id", null: false
+    t.bigint "hall_id", null: false
+    t.bigint "doctor_id", null: false
+    t.bigint "price_item_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["clinic_id"], name: "index_appointments_on_clinic_id"
+    t.index ["doctor_id"], name: "index_appointments_on_doctor_id"
+    t.index ["hall_id"], name: "index_appointments_on_hall_id"
+    t.index ["price_item_id"], name: "index_appointments_on_price_item_id"
+  end
+
+  create_table "clinic_doctors", force: :cascade do |t|
+    t.bigint "clinic_id", null: false
+    t.bigint "doctor_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["clinic_id"], name: "index_clinic_doctors_on_clinic_id"
+    t.index ["doctor_id"], name: "index_clinic_doctors_on_doctor_id"
+  end
 
   create_table "clinical_center_admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -27,12 +58,29 @@ ActiveRecord::Schema.define(version: 2020_09_03_103805) do
     t.index ["reset_password_token"], name: "index_clinical_center_admins_on_reset_password_token", unique: true
   end
 
+  create_table "clinics", force: :cascade do |t|
+    t.string "name"
+    t.bigint "address_id", null: false
+    t.string "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["address_id"], name: "index_clinics_on_address_id"
+  end
+
   create_table "doctors", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "first_name"
     t.string "last_name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "halls", force: :cascade do |t|
+    t.bigint "clinic_id", null: false
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["clinic_id"], name: "index_halls_on_clinic_id"
   end
 
   create_table "patients", force: :cascade do |t|
@@ -55,4 +103,30 @@ ActiveRecord::Schema.define(version: 2020_09_03_103805) do
     t.index ["reset_password_token"], name: "index_patients_on_reset_password_token", unique: true
   end
 
+  create_table "price_items", force: :cascade do |t|
+    t.bigint "price_list_id", null: false
+    t.string "kind"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["price_list_id"], name: "index_price_items_on_price_list_id"
+  end
+
+  create_table "price_lists", force: :cascade do |t|
+    t.bigint "clinic_id", null: false
+    t.boolean "active", default: true
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["clinic_id"], name: "index_price_lists_on_clinic_id"
+  end
+
+  add_foreign_key "appointments", "clinics"
+  add_foreign_key "appointments", "doctors"
+  add_foreign_key "appointments", "halls"
+  add_foreign_key "appointments", "price_items"
+  add_foreign_key "clinic_doctors", "clinics"
+  add_foreign_key "clinic_doctors", "doctors"
+  add_foreign_key "clinics", "addresses"
+  add_foreign_key "halls", "clinics"
+  add_foreign_key "price_items", "price_lists"
+  add_foreign_key "price_lists", "clinics"
 end

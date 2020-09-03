@@ -5,4 +5,8 @@ class Clinic < ApplicationRecord
   has_many :clinic_doctors
   has_many :doctors, through: :clinic_doctors
   has_many :price_lists
+
+  def full_address
+    "#{address.street}, #{address.city}, #{address.country}"
+  end
 end

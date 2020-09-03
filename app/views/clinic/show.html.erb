@@ -1,0 +1,23 @@
+<%= render partial: "layouts/navbar" %>
+
+<div class="d-flex justify-content-center">
+  <div class="d-flex flex-column">
+    <h1 class="text-center">Clinic</h1>
+
+    <h3>Name: <%= @clinic.name %></h3>
+    <h3>Address:</h3>
+    <h4 class="address-padding">Street: <%= @clinic.address.street %></h4>
+    <h4 class="address-padding">City: <%= @clinic.address.city %></h4>
+    <h4 class="address-padding">Country: <%= @clinic.address.country %></h4>
+    <h3>Description: <%= @clinic.description %></h3>
+  </div>
+</div>
+
+<h3>Appointments:</h3>
+<%= render partial: "appointments", locals: {appointments: @appointments} %>
+<h3>Doctors:</h3>
+<%= render partial: "doctors", locals: {doctors: @clinic.doctors} %>
+<h3>Halls:</h3>
+<%= render partial: "halls", locals: {halls: @clinic.halls} %>
+<h3>Price List:</h3>
+<%= render partial: "price_list", locals: {price_list: @price_list} %>

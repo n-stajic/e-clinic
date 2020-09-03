@@ -62,8 +62,13 @@ PriceItem.create!([
 ])
 
 Appointment.create!([
-  {clinic: Clinic.first, hall: Hall.first, doctor: Doctor.first, patient: Patient.first, price_item: PriceItem.first, date: Time.now-3.days, duration: 45},
-  {clinic: Clinic.first, hall: Hall.first, doctor: Doctor.first, patient: Patient.first, price_item: PriceItem.second, date: Time.now-2.days, duration: 30},
-  {clinic: Clinic.second, hall: Hall.second, doctor: Doctor.third, patient: Patient.first, price_item: PriceItem.first, date: Time.now-1.days, duration: 15},
-  {clinic: Clinic.first, hall: Hall.first, doctor: Doctor.first, patient: Patient.second, price_item: PriceItem.first, date: Time.now-3.days, duration: 60}
+  {clinic: Clinic.first, hall: Hall.first, doctor: Doctor.first, patient: Patient.first, price_item: PriceItem.first, date: Time.zone.now-3.days, duration: 45},
+  {clinic: Clinic.first, hall: Hall.first, doctor: Doctor.first, patient: Patient.first, price_item: PriceItem.second, date: Time.zone.now-2.days, duration: 30},
+  {clinic: Clinic.second, hall: Hall.second, doctor: Doctor.third, patient: Patient.first, price_item: PriceItem.first, date: Time.zone.now-1.days, duration: 15},
+  {clinic: Clinic.first, hall: Hall.first, doctor: Doctor.first, patient: Patient.second, price_item: PriceItem.first, date: Time.zone.now-3.days, duration: 60},
+  {clinic: Clinic.first, hall: Hall.first, doctor: Doctor.first, patient: nil, price_item: PriceItem.first, date: Time.zone.now+3.days, fast: true},
+  {clinic: Clinic.second, hall: Hall.second, doctor: Doctor.third, patient: nil, price_item: PriceItem.first, date: Time.zone.now+2.days, fast: true},
+  {clinic: Clinic.second, hall: Hall.second, doctor: Doctor.third, patient: nil, price_item: PriceItem.first, date: Time.zone.now+12.hours, fast: true},
+  {clinic: Clinic.first, hall: Hall.first, doctor: Doctor.first, patient: nil, price_item: PriceItem.first, date: Time.zone.now+6.days},
+  {clinic: Clinic.second, hall: Hall.second, doctor: Doctor.third, patient: nil, price_item: PriceItem.first, date: Time.zone.now+6.days}
 ])

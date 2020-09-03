@@ -1,0 +1,16 @@
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Type</th>
+      <th scope="col">Price</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% price_list.price_items.each do |price_item| %>
+      <tr>
+        <td><%= price_item.kind %></td>
+        <td><%= price_item.price %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

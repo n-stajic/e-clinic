@@ -21,13 +21,13 @@
   <tbody>
     <% @appointments.each do |appointment| %>
       <tr>
-        <td><%= appointment.clinic.name %>
-        <td><%= appointment.hall.name %>
-        <td><%= appointment.doctor.full_name %>
-        <td><%= appointment.price_item.kind %>
-        <td><%= appointment.price_item.price %>
-        <td><%= appointment.date %>
-        <td><%= appointment.duration %>
+        <td><%= appointment.clinic.name %></td>
+        <td><%= appointment.hall.name %></td>
+        <td><%= appointment.doctor.full_name %></td>
+        <td><%= appointment.price_item.kind %></td>
+        <td><%= appointment.price_item.price %></td>
+        <td><%= appointment.date %></td>
+        <td><%= appointment.duration %></td>
       </tr>
     <% end %>
   </tbody>

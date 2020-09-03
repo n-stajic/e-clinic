@@ -12,6 +12,10 @@ Rails.application.routes.draw do
   devise_for :patients, controllers: {
     registrations: 'patients/registrations'
   }
+
+  get "clinics", to: "clinic#index"
+  get "appointments", to: "appointment#index"
+
   devise_for :clinical_center_admins, only: [:sessions]
 
   get "approvals", to: "approval#index"

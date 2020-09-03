@@ -1,0 +1,34 @@
+<%= render partial: "layouts/navbar" %>
+
+<div class="text-center">
+  <h1>Appointments Page</h1>
+</div>
+
+<%= render partial: "layouts/alerts" %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col"><%= link_to "Clinic Name", appointments_path(order_by: "clinics.name") %></th>
+      <th scope="col"><%= link_to "Hall", appointments_path(order_by: "halls.name") %></th>
+      <th scope="col"><%= link_to "Doctor", appointments_path(order_by: "first_name, last_name") %></th>
+      <th scope="col"><%= link_to "Type", appointments_path(order_by: :kind) %></th>
+      <th scope="col"><%= link_to "Price", appointments_path(order_by: :price) %></th>
+      <th scope="col"><%= link_to "Date", appointments_path(order_by: :date) %></th>
+      <th scope="col"><%= link_to "Duration", appointments_path(order_by: :duration) %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @appointments.each do |appointment| %>
+      <tr>
+        <td><%= appointment.clinic.name %>
+        <td><%= appointment.hall.name %>
+        <td><%= appointment.doctor.full_name %>
+        <td><%= appointment.price_item.kind %>
+        <td><%= appointment.price_item.price %>
+        <td><%= appointment.date %>
+        <td><%= appointment.duration %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

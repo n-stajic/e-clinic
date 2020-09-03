@@ -1,0 +1,30 @@
+<%= render partial: "layouts/navbar" %>
+
+<div class="text-center">
+  <h1>Clinics Page</h1>
+</div>
+
+<%= render partial: "layouts/alerts" %>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col"><%= link_to "Name", clinics_path(order_by: :name) %></th>
+      <th scope="col"><%= link_to "Street", clinics_path(order_by: :street) %></th>
+      <th scope="col"><%= link_to "City", clinics_path(order_by: :city) %></th>
+      <th scope="col"><%= link_to "Country", clinics_path(order_by: :country) %></th>
+      <th scope="col"><%= link_to "Description", clinics_path(order_by: :description) %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @clinics.each do |clinic| %>
+      <tr>
+        <td><%= clinic.name %>
+        <td><%= clinic.address.street %>
+        <td><%= clinic.address.city %>
+        <td><%= clinic.address.country %>
+        <td><%= clinic.description %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

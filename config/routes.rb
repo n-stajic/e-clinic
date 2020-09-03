@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   devise_for :patients, controllers: {
     registrations: 'patients/registrations'
   }
-  devise_for :clinical_center_admins
+  devise_for :clinical_center_admins, only: [:sessions]
 
   get "approvals", to: "approval#index"
   get "approve_patient/:patient_id", to: "approval#approve_patient", as: "approve_patient"

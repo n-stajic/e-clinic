@@ -4,19 +4,19 @@ class Patient < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  validates :email, presence: true
-  validates :first_name, presence: true
-  validates :last_name, presence: true
+  validates :email,          presence: true, immutable: true, uniqueness: true
+  validates :jmbg,           presence: true, immutable: true, uniqueness: true
+  validates :first_name,     presence: true
+  validates :last_name,      presence: true
   validates :street_address, presence: true
-  validates :city, presence: true
-  validates :country, presence: true
-  validates :phone_number, presence: true
-  validates :jmbg, presence: true
+  validates :city,           presence: true
+  validates :country,        presence: true
+  validates :phone_number,   presence: true
 
   def active_for_authentication? 
-    super && approved? 
+    super && approved?
   end 
-  
+
   def inactive_message 
     approved? ? super : :not_approved
   end

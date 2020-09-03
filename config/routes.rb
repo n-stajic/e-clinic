@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   get "clinics", to: "clinic#index"
   get "clinics/:id", to: "clinic#show", as: "show_clinic"
   get "appointments", to: "appointment#index"
+  get "fast_appointments/:clinic_id", to: "appointment#fast_appointments", as: "fast_appointments"
+  post "fast_booking", to: "appointment#fast_booking", as: "fast_booking" 
 
   devise_for :clinical_center_admins, only: [:sessions]
 

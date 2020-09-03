@@ -3,6 +3,7 @@
 <div class="d-flex justify-content-center">
   <div class="d-flex flex-column">
     <h1 class="text-center">Clinic</h1>
+    <%= link_to 'Fast Appointments', fast_appintment_path(clinic_id: @clinic.id) %>
 
     <h3>Name: <%= @clinic.name %></h3>
     <h3>Address:</h3>

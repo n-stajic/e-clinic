@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_03_151451) do
+ActiveRecord::Schema.define(version: 2020_09_03_211410) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,9 +30,10 @@ ActiveRecord::Schema.define(version: 2020_09_03_151451) do
     t.bigint "patient_id"
     t.bigint "price_item_id", null: false
     t.datetime "date", null: false
-    t.integer "duration", null: false
+    t.integer "duration"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "fast"
     t.index ["clinic_id"], name: "index_appointments_on_clinic_id"
     t.index ["doctor_id"], name: "index_appointments_on_doctor_id"
     t.index ["hall_id"], name: "index_appointments_on_hall_id"

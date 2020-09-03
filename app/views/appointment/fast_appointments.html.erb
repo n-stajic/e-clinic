@@ -1,0 +1,8 @@
+<%= render partial: "layouts/navbar" %>
+<%= render partial: "layouts/alerts" %>
+
+<div class="text-center">
+  <h1>Fast Appointments</h1>
+</div>
+
+<%= render partial: "table", locals: {appointments: @appointments, book: true} %>

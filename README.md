@@ -10,7 +10,7 @@ To access admin login go to: https://e-clinic-project.herokuapp.com/clinical_cen
 
 Approved patient: patient1@user.com / password
 
-Unpproved patient: patient1@user.com / password
+Unpproved patient: patient2@user.com / password
 
 ## Project setup
 

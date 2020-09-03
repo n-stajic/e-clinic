@@ -1,5 +1,13 @@
 Rails.application.routes.draw do
-  root to: "home#index"
+  authenticated :patient do
+    root to: 'home#index', as: :authenticated_patient_root
+  end
+  authenticated :clinical_center_admin do
+    root to: 'approval#index', as: :authenticated_clinical_center_admin_root
+  end
+  devise_scope :patient do
+    root to: 'devise/sessions#new'
+  end
 
   devise_for :patients, controllers: {
     registrations: 'patients/registrations'

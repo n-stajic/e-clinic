@@ -1,13 +1,25 @@
 <div class="text-center">
   <h1>Approval Page</h1>
+  <%= link_to 'Logout', destroy_clinical_center_admin_session_path, method: :delete, class: "btn btn-primary" %>
 </div>
 
-<table>
-  <% @patients.each do |patient| %>
+<%= render partial: "layouts/alerts" %>
+
+<table class="table">
+  <thead>
     <tr>
-      <td><%= patient.email %>
-      <td><%= patient.approved %>
-      <td><%= link_to "Approve", approve_patient_path(patient) %>
+      <th scope="col">Email</th>
+      <th scope="col">Approved</th>
+      <th scope="col"></th>
     </tr>
-  <% end %>
+  </thead>
+  <tbody>
+    <% @patients.each do |patient| %>
+      <tr>
+        <td><%= patient.email %>
+        <td><%= patient.approved %>
+        <td><%= link_to "Approve", approve_patient_path(patient) %>
+      </tr>
+    <% end %>
+  </tbody>
 </table>

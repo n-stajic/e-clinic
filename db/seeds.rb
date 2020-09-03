@@ -13,13 +13,15 @@ ClinicalCenterAdmin.create!([
 Address.create!([
   {street: "Lars Family Hoamstead", city: "Tozeur", country: "Tunesia"},
   {street: "Thone room B", city: "Imperial Palace", country: "Alderaan"},
+  {street: "Just", city: "Some", country: "Address"},
   {street: "1231  Fraggle Drive", city: "Louisville", country: "USA"},
   {street: "937  Fannie Street", city: "San Angelo", country: "USA"}
 ])
 
 Patient.create!([
-  {email: "patient1@user.com", jmbg: "1234567890", first_name: "Luke", last_name: "Skywalker", phone_number: "5550128", password: 'password', password_confirmation: 'password', address: Address.first},
-  {email: "patient2@user.com", jmbg: "1234567891", first_name: "Leia", last_name: "Organa", phone_number: "567885546", password: 'password', password_confirmation: 'password', address: Address.second}
+  {email: "patient1@user.com", jmbg: "1234567890", first_name: "Luke", last_name: "Skywalker", phone_number: "5550128", password: 'password', password_confirmation: 'password', address: Address.first, approved: true},
+  {email: "patient2@user.com", jmbg: "1234567891", first_name: "Leia", last_name: "Organa", phone_number: "567885546", password: 'password', password_confirmation: 'password', address: Address.second},
+  {email: "patient3@user.com", jmbg: "1234567892", first_name: "Obi Van", last_name: "Kenobi", phone_number: "567885543", password: 'password', password_confirmation: 'password', address: Address.third}
 ])
 
 Doctor.create!([

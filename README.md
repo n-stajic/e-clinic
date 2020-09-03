@@ -1,24 +1,27 @@
-# README
+# E-Clinic
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This project is deployed on heroku at https://e-clinic-project.herokuapp.com/
 
-Things you may want to cover:
+## Testing credentials
 
-* Ruby version
+Clinical Center Admin: admin@user.com / password
 
-* System dependencies
+To access admin login go to: https://e-clinic-project.herokuapp.com/clinical_center_admins/sign_in
 
-* Configuration
+Approved patient: patient1@user.com / password
 
-* Database creation
+Unpproved patient: patient1@user.com / password
 
-* Database initialization
+## Project setup
 
-* How to run the test suite
+This project was created using ruby version 2.6.5p114
 
-* Services (job queues, cache servers, search engines, etc.)
+To install required libraries run `bunde install`
 
-* Deployment instructions
+To create the database run `bundle exec rake db:create`
 
-* ...
+To migrate the database run `bundle exec rake db:migrate`
+
+To seed the database run `bundle exec rake db:seed`
+
+To start the application run `bundle exec rails server`

@@ -5,6 +5,7 @@ class Patient < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   belongs_to :address
+  has_many :appointments
 
   validates :email,        presence: true, immutable: true, uniqueness: true
   validates :jmbg,         presence: true, immutable: true, uniqueness: true

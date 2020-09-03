@@ -12,7 +12,9 @@ ClinicalCenterAdmin.create!([
 
 Address.create!([
   {street: "Lars Family Hoamstead", city: "Tozeur", country: "Tunesia"},
-  {street: "Thone room B", city: "Imperial Palace", country: "Alderaan"}
+  {street: "Thone room B", city: "Imperial Palace", country: "Alderaan"},
+  {street: "1231  Fraggle Drive", city: "Louisville", country: "USA"},
+  {street: "937  Fannie Street", city: "San Angelo", country: "USA"}
 ])
 
 Patient.create!([
@@ -21,8 +23,45 @@ Patient.create!([
 ])
 
 Doctor.create!([
-  {email: "doctor1@email.com", first_name: "Padme", last_name: "Amidala"},
-  {email: "doctor2@email.com", first_name: "Mace", last_name: "Windu"},
-  {email: "doctor3@email.com", first_name: "Qui-Gon", last_name: "Jinn"},
-  {email: "doctor4@email.com", first_name: "Jar Jar", last_name: "Binks"}
+  {email: "doctor1@user.com", first_name: "Padme", last_name: "Amidala"},
+  {email: "doctor2@user.com", first_name: "Mace", last_name: "Windu"},
+  {email: "doctor3@user.com", first_name: "Qui-Gon", last_name: "Jinn"},
+  {email: "doctor4@user.com", first_name: "Jar Jar", last_name: "Binks"}
+])
+
+Clinic.create!([
+  {name: "SvetskiMegaCar", address: Address.third, description: "Svetska klinika mega cara"},
+  {name: "3 kostura", address: Address.fourth, description: "Ko prezivi pricace"}
+])
+
+ClinicDoctor.create!([
+  {clinic: Clinic.first, doctor: Doctor.first},
+  {clinic: Clinic.second, doctor: Doctor.first},
+  {clinic: Clinic.first, doctor: Doctor.second},
+  {clinic: Clinic.second, doctor: Doctor.third},
+  {clinic: Clinic.second, doctor: Doctor.fourth},
+])
+
+Hall.create!([
+  {clinic: Clinic.first, name: "Rambo"},
+  {clinic: Clinic.second, name: "Menza"}
+])
+
+PriceList.create!([
+  {clinic: Clinic.first},
+  {clinic: Clinic.second}
+])
+
+PriceItem.create!([
+  {price_list: PriceList.first, kind: "operation", price: "100"},
+  {price_list: PriceList.first, kind: "examination", price: "10"},
+  {price_list: PriceList.second, kind: "operation", price: "10"},
+  {price_list: PriceList.second, kind: "examination", price: "1"}
+])
+
+Appointment.create!([
+  {clinic: Clinic.first, hall: Hall.first, doctor: Doctor.first, patient: Patient.first, price_item: PriceItem.first, date: Time.now-3.days, duration: 45},
+  {clinic: Clinic.first, hall: Hall.first, doctor: Doctor.first, patient: Patient.first, price_item: PriceItem.second, date: Time.now-2.days, duration: 30},
+  {clinic: Clinic.second, hall: Hall.second, doctor: Doctor.third, patient: Patient.first, price_item: PriceItem.first, date: Time.now-1.days, duration: 15},
+  {clinic: Clinic.first, hall: Hall.first, doctor: Doctor.first, patient: Patient.second, price_item: PriceItem.first, date: Time.now-3.days, duration: 60}
 ])

@@ -24,16 +24,19 @@ ActiveRecord::Schema.define(version: 2020_09_03_151451) do
   end
 
   create_table "appointments", force: :cascade do |t|
-    t.datetime "date"
     t.bigint "clinic_id", null: false
     t.bigint "hall_id", null: false
     t.bigint "doctor_id", null: false
+    t.bigint "patient_id"
     t.bigint "price_item_id", null: false
+    t.datetime "date", null: false
+    t.integer "duration", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["clinic_id"], name: "index_appointments_on_clinic_id"
     t.index ["doctor_id"], name: "index_appointments_on_doctor_id"
     t.index ["hall_id"], name: "index_appointments_on_hall_id"
+    t.index ["patient_id"], name: "index_appointments_on_patient_id"
     t.index ["price_item_id"], name: "index_appointments_on_price_item_id"
   end
 
@@ -105,6 +108,7 @@ ActiveRecord::Schema.define(version: 2020_09_03_151451) do
   create_table "price_items", force: :cascade do |t|
     t.bigint "price_list_id", null: false
     t.string "kind"
+    t.float "price"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["price_list_id"], name: "index_price_items_on_price_list_id"
@@ -121,6 +125,7 @@ ActiveRecord::Schema.define(version: 2020_09_03_151451) do
   add_foreign_key "appointments", "clinics"
   add_foreign_key "appointments", "doctors"
   add_foreign_key "appointments", "halls"
+  add_foreign_key "appointments", "patients"
   add_foreign_key "appointments", "price_items"
   add_foreign_key "clinic_doctors", "clinics"
   add_foreign_key "clinic_doctors", "doctors"

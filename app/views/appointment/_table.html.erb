@@ -8,7 +8,11 @@
       <th scope="col"><%= link_to "Price", appointments_path(order_by: :price) %></th>
       <th scope="col"><%= link_to "Date", appointments_path(order_by: :date) %></th>
       <th scope="col"><%= link_to "Duration", appointments_path(order_by: :duration) %></th>
-      <th scope="col"></th>
+      <% if booking %>
+        <th scope="col">Price</th>
+        <th scope="col">Discounted Price</th>
+        <th scope="col"></th>
+      <% end %>
     </tr>
   </thead>
   <tbody>
@@ -21,7 +25,11 @@
         <td><%= appointment.price_item.price %></td>
         <td><%= appointment.date %></td>
         <td><%= appointment.duration %></td>
-        <td><%= link_to "Book", fast_booking_path(appointment_id: appointment.id), method: :post if book %></td>
+        <% if booking %>
+          <th scope="col"><%= appointment.price %></th>
+          <th scope="col"><%= appointment.discounted_price %></th>
+          <td><%= link_to "Book", fast_booking_path(appointment_id: appointment.id), method: :post if booking %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

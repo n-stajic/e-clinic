@@ -1,0 +1,13 @@
+<div class="text-center">
+  <h1>Approval Page</h1>
+</div>
+
+<table>
+  <% @patients.each do |patient| %>
+    <tr>
+      <td><%= patient.email %>
+      <td><%= patient.approved %>
+      <td><%= link_to "Approve", approve_patient_path(patient) %>
+    </tr>
+  <% end %>
+</table>

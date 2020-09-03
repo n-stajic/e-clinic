@@ -1,6 +1,11 @@
 Rails.application.routes.draw do
+  root to: "home#index"
+
+  devise_for :patients, controllers: {
+    registrations: 'patients/registrations'
+  }
   devise_for :clinical_center_admins
-  root to: 'home#index'
-  devise_for :patients
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+
+  get "approvals", to: "approval#index"
+  get "approve_patient/:patient_id", to: "approval#approve_patient", as: "approve_patient"
 end

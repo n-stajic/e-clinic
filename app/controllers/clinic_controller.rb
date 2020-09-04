@@ -12,7 +12,8 @@ class ClinicController < ApplicationController
   end
 
   def search
-    @clinics = Clinic.not_on_vacation(params[:date]).qualified(params[:examination_type]).uniq
+    @date = Date.parse(params[:date].keys[0])
     @examination_type = params[:examination_type]
+    @clinics = Clinic.not_on_vacation(@date).qualified(@examination_type).working_on(@date).uniq
   end
 end

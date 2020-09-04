@@ -23,7 +23,7 @@
         <td><%= clinic.name %></td>
         <td><%= clinic.full_address %></td>
         <td><%= clinic.price(@examination_type) %></td>
-        <td><%= link_to "show", show_clinic_path(clinic) %></td>
+        <td><%= link_to "doctors", doctors_path(date: @date, examination_type: @examination_type, clinic_id: clinic.id) %></td>
       </tr>
     <% end %>
   </tbody>

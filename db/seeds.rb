@@ -70,10 +70,10 @@ PriceList.create!([
 ])
 
 PriceItem.create!([
-  {price_list: PriceList.first, examination_type: ExaminationType.first, price: "100"},
-  {price_list: PriceList.first, examination_type: ExaminationType.second, price: "10"},
-  {price_list: PriceList.second, examination_type: ExaminationType.first, price: "10"},
-  {price_list: PriceList.second, examination_type: ExaminationType.second, price: "1"}
+  {price_list: PriceList.first, examination_type: ExaminationType.first, price: "100", duration: 30},
+  {price_list: PriceList.first, examination_type: ExaminationType.second, price: "10", duration: 45},
+  {price_list: PriceList.second, examination_type: ExaminationType.first, price: "10", duration: 15},
+  {price_list: PriceList.second, examination_type: ExaminationType.second, price: "1", duration: 10}
 ])
 
 Appointment.create!([

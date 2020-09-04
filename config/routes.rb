@@ -14,8 +14,11 @@ Rails.application.routes.draw do
   }
 
   get "clinics", to: "clinic#index"
-  get "clinics/search", to: "clinic#search"
+  get "clinics/search", to: "clinic#search", as: "clinics_search"
   get "clinics/:id", to: "clinic#show", as: "show_clinic"
+
+  get "doctors", to: "doctor#index", as: "doctors"
+
   get "appointments", to: "appointment#index"
   get "fast_appointments/:clinic_id", to: "appointment#fast_appointments", as: "fast_appointments"
   post "fast_booking", to: "appointment#fast_booking", as: "fast_booking" 

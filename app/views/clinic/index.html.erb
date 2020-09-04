@@ -10,7 +10,7 @@
 <%= form_tag("clinics/search", method: "get") do %>
   <%= label_tag("Search for:") %>
   <%= label_tag(:date, "Date:") %>
-  <%= date_select(date = Date.current, options = {}, html_options = {required: true}) %>
+  <%= date_select(:date, date = Date.current, options = {}, html_options = {required: true}) %>
   <%= label_tag(:examination_type, "Examination Type:") %>
   <%= text_field_tag(:examination_type, nil, required: true) %>
   <%= submit_tag("Search") %>

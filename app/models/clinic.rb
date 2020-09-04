@@ -9,6 +9,7 @@ class Clinic < ApplicationRecord
 
   scope :not_on_vacation, -> (date) { left_outer_joins(doctors: :vacations).where("vacations.from > ? OR vacations.to < ? OR vacations.id IS NULL", date, date) }
   scope :qualified, -> (examination_type) { left_outer_joins(doctors: :examination_types).where("examination_types.kind = ?", examination_type) }
+  scope :working_on, -> (date) { left_outer_joins(doctors: :schedules).where("schedules.schedule->>? IS NOT NULL AND schedules.clinic_id = clinics.id", date.strftime("%A").downcase) }
 
   def full_address
     "#{address.street}, #{address.city}, #{address.country}"

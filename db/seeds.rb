@@ -31,9 +31,23 @@ Doctor.create!([
   {email: "doctor4@user.com", first_name: "Jar Jar", last_name: "Binks"}
 ])
 
+ExaminationType.create!([
+  {kind: "operation"},
+  {kind: "examination"}
+])
+
+DoctorExaminationType.create!([
+  {doctor: Doctor.first, examination_type: ExaminationType.first},
+  {doctor: Doctor.first, examination_type: ExaminationType.second},
+  {doctor: Doctor.second, examination_type: ExaminationType.first},
+  {doctor: Doctor.third, examination_type: ExaminationType.second},
+  {doctor: Doctor.fourth, examination_type: ExaminationType.first}
+])
+
 Clinic.create!([
   {name: "SvetskiMegaCar", address: Address.third, description: "Svetska klinika mega cara"},
-  {name: "3 kostura", address: Address.fourth, description: "Ko prezivi pricace"}
+  {name: "3 kostura", address: Address.fourth, description: "Ko prezivi pricace"},
+  {name: "3 kostura koja ne radi", address: Address.fourth, description: "Nema zivih vise"}
 ])
 
 ClinicDoctor.create!([
@@ -42,6 +56,7 @@ ClinicDoctor.create!([
   {clinic: Clinic.first, doctor: Doctor.second},
   {clinic: Clinic.second, doctor: Doctor.third},
   {clinic: Clinic.second, doctor: Doctor.fourth},
+  {clinic: Clinic.third, doctor: Doctor.fourth}
 ])
 
 Hall.create!([
@@ -55,10 +70,10 @@ PriceList.create!([
 ])
 
 PriceItem.create!([
-  {price_list: PriceList.first, kind: "operation", price: "100"},
-  {price_list: PriceList.first, kind: "examination", price: "10"},
-  {price_list: PriceList.second, kind: "operation", price: "10"},
-  {price_list: PriceList.second, kind: "examination", price: "1"}
+  {price_list: PriceList.first, examination_type: ExaminationType.first, price: "100"},
+  {price_list: PriceList.first, examination_type: ExaminationType.second, price: "10"},
+  {price_list: PriceList.second, examination_type: ExaminationType.first, price: "10"},
+  {price_list: PriceList.second, examination_type: ExaminationType.second, price: "1"}
 ])
 
 Appointment.create!([

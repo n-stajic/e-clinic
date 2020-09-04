@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_04_142257) do
+ActiveRecord::Schema.define(version: 2020_09_04_150726) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -72,10 +72,25 @@ ActiveRecord::Schema.define(version: 2020_09_04_142257) do
     t.index ["address_id"], name: "index_clinics_on_address_id"
   end
 
+  create_table "doctor_examination_types", force: :cascade do |t|
+    t.bigint "doctor_id", null: false
+    t.bigint "examination_type_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["doctor_id"], name: "index_doctor_examination_types_on_doctor_id"
+    t.index ["examination_type_id"], name: "index_doctor_examination_types_on_examination_type_id"
+  end
+
   create_table "doctors", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "first_name"
     t.string "last_name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "examination_types", force: :cascade do |t|
+    t.string "kind"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -109,10 +124,11 @@ ActiveRecord::Schema.define(version: 2020_09_04_142257) do
 
   create_table "price_items", force: :cascade do |t|
     t.bigint "price_list_id", null: false
-    t.string "kind"
     t.float "price"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.bigint "examination_type_id", null: false
+    t.index ["examination_type_id"], name: "index_price_items_on_examination_type_id"
     t.index ["price_list_id"], name: "index_price_items_on_price_list_id"
   end
 
@@ -151,7 +167,10 @@ ActiveRecord::Schema.define(version: 2020_09_04_142257) do
   add_foreign_key "clinic_doctors", "clinics"
   add_foreign_key "clinic_doctors", "doctors"
   add_foreign_key "clinics", "addresses"
+  add_foreign_key "doctor_examination_types", "doctors"
+  add_foreign_key "doctor_examination_types", "examination_types"
   add_foreign_key "halls", "clinics"
+  add_foreign_key "price_items", "examination_types"
   add_foreign_key "price_items", "price_lists"
   add_foreign_key "price_lists", "clinics"
   add_foreign_key "vacations", "doctors"

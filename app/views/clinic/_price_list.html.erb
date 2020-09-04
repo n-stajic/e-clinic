@@ -8,7 +8,7 @@
   <tbody>
     <% price_list.price_items.each do |price_item| %>
       <tr>
-        <td><%= price_item.kind %></td>
+        <td><%= price_item.examination_type.kind %></td>
         <td><%= price_item.price %></td>
       </tr>
     <% end %>

@@ -72,3 +72,15 @@ Appointment.create!([
   {clinic: Clinic.first, hall: Hall.first, doctor: Doctor.first, patient: nil, price_item: PriceItem.first, date: Time.zone.now+6.days},
   {clinic: Clinic.second, hall: Hall.second, doctor: Doctor.third, patient: nil, price_item: PriceItem.first, date: Time.zone.now+6.days}
 ])
+
+Schedule.create!([
+  {doctor: Doctor.first, clinic: Clinic.first, schedule: {monday: [9, 17], friday: [8, 16], sunday: [8, 13]}},
+  {doctor: Doctor.first, clinic: Clinic.second, schedule: {tuesday: [9, 17], wednesday: [8, 16], thursday: [8, 16], saturday: [8, 13]}},
+  {doctor: Doctor.second, clinic: Clinic.first, schedule: {tuesday: [9, 17], wednesday: [8, 16], thursday: [8, 16], saturday: [8, 13]}},
+  {doctor: Doctor.third, clinic: Clinic.second, schedule: {monday: [9, 17], friday: [8, 16], sunday: [8, 13]}},
+  {doctor: Doctor.fourth, clinic: Clinic.second, schedule: {tuesday: [9, 17], wednesday: [8, 16], thursday: [8, 16], saturday: [8, 13]}}
+])
+
+Vacation.create!([
+  {doctor: Doctor.fourth, from: Time.zone.today, to: Time.zone.today+30.days}
+])

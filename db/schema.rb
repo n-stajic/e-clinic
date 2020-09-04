@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_03_222915) do
+ActiveRecord::Schema.define(version: 2020_09_04_142257) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -124,6 +124,25 @@ ActiveRecord::Schema.define(version: 2020_09_03_222915) do
     t.index ["clinic_id"], name: "index_price_lists_on_clinic_id"
   end
 
+  create_table "schedules", force: :cascade do |t|
+    t.bigint "doctor_id"
+    t.bigint "clinic_id"
+    t.json "schedule"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["clinic_id"], name: "index_schedules_on_clinic_id"
+    t.index ["doctor_id"], name: "index_schedules_on_doctor_id"
+  end
+
+  create_table "vacations", force: :cascade do |t|
+    t.bigint "doctor_id", null: false
+    t.date "from"
+    t.date "to"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["doctor_id"], name: "index_vacations_on_doctor_id"
+  end
+
   add_foreign_key "appointments", "clinics"
   add_foreign_key "appointments", "doctors"
   add_foreign_key "appointments", "halls"
@@ -135,4 +154,5 @@ ActiveRecord::Schema.define(version: 2020_09_03_222915) do
   add_foreign_key "halls", "clinics"
   add_foreign_key "price_items", "price_lists"
   add_foreign_key "price_lists", "clinics"
+  add_foreign_key "vacations", "doctors"
 end

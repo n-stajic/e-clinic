@@ -1,0 +1,2 @@
+class ExaminationType < ApplicationRecord
+end

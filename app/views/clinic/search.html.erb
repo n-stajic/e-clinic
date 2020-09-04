@@ -1,0 +1,28 @@
+<div class="d-flex justify-content-center">
+  <div class="d-flex flex-column">
+    <div class="text-center">
+      <h1>Clinics Search</h1>
+    </div>
+  </div>
+</div>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Address</th>
+      <th scope="col">Price</th>
+      <th scope="col"></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @clinics.each do |clinic| %>
+      <tr>
+        <td><%= clinic.name %></td>
+        <td><%= clinic.full_address %></td>
+        <td><%= clinic.price(@examination_type) %></td>
+        <td><%= link_to "show", show_clinic_path(clinic) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

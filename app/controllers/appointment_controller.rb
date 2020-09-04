@@ -4,7 +4,7 @@ class AppointmentController < ApplicationController
   def index
     @appointments = Appointment.joins(:clinic).joins(:hall).joins(:doctor)
                     .joins(price_item: :examination_type)
-                    .where(patient: current_patient).active.order(params[:order_by])
+                    .where(patient: current_patient).order(params[:order_by])
   end
 
   def fast_appointments

@@ -81,11 +81,11 @@ Appointment.create!([
   {clinic: Clinic.first, hall: Hall.first, doctor: Doctor.first, patient: Patient.first, price_item: PriceItem.second, date: Time.zone.now-2.days, duration: 30},
   {clinic: Clinic.second, hall: Hall.second, doctor: Doctor.third, patient: Patient.first, price_item: PriceItem.first, date: Time.zone.now-1.days, duration: 15},
   {clinic: Clinic.first, hall: Hall.first, doctor: Doctor.first, patient: Patient.second, price_item: PriceItem.first, date: Time.zone.now-3.days, duration: 60},
-  {clinic: Clinic.first, hall: Hall.first, doctor: Doctor.first, patient: nil, price_item: PriceItem.first, date: Time.zone.now+3.days, fast: true, discount: 15},
-  {clinic: Clinic.second, hall: Hall.second, doctor: Doctor.third, patient: nil, price_item: PriceItem.first, date: Time.zone.now+2.days, fast: true, discount: 30},
+  {clinic: Clinic.first, hall: Hall.first, doctor: Doctor.first, patient: nil, price_item: PriceItem.first, date: Time.zone.now+30.days, fast: true, discount: 15},
+  {clinic: Clinic.second, hall: Hall.second, doctor: Doctor.third, patient: nil, price_item: PriceItem.first, date: Time.zone.now+20.days, fast: true, discount: 30},
   {clinic: Clinic.second, hall: Hall.second, doctor: Doctor.third, patient: nil, price_item: PriceItem.first, date: Time.zone.now+12.hours, fast: true, discount: 10},
-  {clinic: Clinic.first, hall: Hall.first, doctor: Doctor.first, patient: nil, price_item: PriceItem.first, date: Time.zone.now+6.days},
-  {clinic: Clinic.second, hall: Hall.second, doctor: Doctor.third, patient: nil, price_item: PriceItem.first, date: Time.zone.now+6.days}
+  {clinic: Clinic.first, hall: Hall.first, doctor: Doctor.first, patient: nil, price_item: PriceItem.first, date: Time.zone.now+60.days},
+  {clinic: Clinic.second, hall: Hall.second, doctor: Doctor.third, patient: nil, price_item: PriceItem.first, date: Time.zone.now+60.days}
 ])
 
 Schedule.create!([
